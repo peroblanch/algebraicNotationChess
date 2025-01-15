@@ -1,6 +1,8 @@
+package src;
+
 import java.util.List;
 
-public class Pawn implements Piece {
+public class Knight implements Piece {
 
     @Override
     public String getPosition() {
@@ -16,6 +18,9 @@ public class Pawn implements Piece {
 
     @Override
     public boolean movePiece(String position, Board board) {
+        if(getMoves(board).contains(position)){
+
+        }
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'movePiece'");
     }

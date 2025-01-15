@@ -1,6 +1,8 @@
+package src;
+
 import java.util.List;
 
-public class King implements Piece {
+public class Queen implements Piece{
 
     @Override
     public String getPosition() {

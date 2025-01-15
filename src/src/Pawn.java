@@ -1,6 +1,8 @@
+package src;
+
 import java.util.List;
 
-public class Rook implements Piece {
+public class Pawn implements Piece {
 
     @Override
     public String getPosition() {
