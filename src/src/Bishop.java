@@ -20,8 +20,75 @@ public class Bishop implements Piece {
 
     @Override
     public List<String> getMoves(Board board) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getMoves'");
+        int x = Notation.Pos_To_XIndex(position);
+        int y = Notation.Pos_To_YIndex(position);
+
+        List<String> possibleMoves = new ArrayList<>();
+
+        Piece[][] checkPos = board.getBoard();
+
+        boolean pXY = true;
+        boolean pXmY = true;
+        boolean mXpY = true;
+        boolean mXY = true;
+
+        for(int i = 1; i<8; i++){
+            if(x+i<8){
+                if(y+i<8){
+                    if(checkPos[x+i][y+i] == null && pXY){
+                        int[][] temp = new int[8][8];
+                        temp[x+i][y+i] = 1;
+                        possibleMoves.add(""+getPiece()+Notation.Convert_To_Algebraic(temp));
+                    } else if (checkPos[x+i][y+i] != null && pXY){
+                        int[][] temp = new int[8][8];
+                        temp[x+i][y+i] = 1;
+                        pXY = false;
+                        possibleMoves.add(""+getPiece()+"x"+Notation.Convert_To_Algebraic(temp));
+                    }
+                }
+                if(y-i>=0){
+                    if(checkPos[x+i][y-i] == null && pXmY){
+                        int[][] temp = new int[8][8];
+                        temp[x+i][y-i] = 1;
+                        possibleMoves.add(""+getPiece()+Notation.Convert_To_Algebraic(temp));
+                    } else if (checkPos[x+i][y-i] != null && pXmY){
+                        int[][] temp = new int[8][8];
+                        temp[x+i][y-i] = 1;
+                        pXmY = false;
+                        possibleMoves.add(""+getPiece()+"x"+Notation.Convert_To_Algebraic(temp));
+                    }
+                }
+            }
+            if(x-i>=0){
+                if(y+i<8){
+                    if(checkPos[x-i][y+i] == null && mXpY){
+                        int[][] temp = new int[8][8];
+                        temp[x-i][y+i] = 1;
+                        possibleMoves.add(""+getPiece()+Notation.Convert_To_Algebraic(temp));
+                    }
+                    else if (checkPos[x-i][y+i] != null && mXpY){
+                        int[][] temp = new int[8][8];
+                        temp[x-i][y+i] = 1;
+                        mXpY = false;
+                        possibleMoves.add(""+getPiece()+"x"+Notation.Convert_To_Algebraic(temp));
+                    }
+                }
+                if(y-i>=0){
+                    if(checkPos[x-i][y-i] == null && mXY){
+                        int[][] temp = new int[8][8];
+                        temp[x-i][y-i] = 1;
+                        possibleMoves.add(""+getPiece()+Notation.Convert_To_Algebraic(temp));
+                    } else if(checkPos[x-i][y-i] != null && mXY){
+                        int[][] temp = new int[8][8];
+                        temp[x-i][y-i] = 1;
+                        mXY = false;
+                        possibleMoves.add(""+getPiece()+"x"+Notation.Convert_To_Algebraic(temp));
+                    }
+                }
+            }
+        }
+        
+        return possibleMoves;
     }
 
     @Override
